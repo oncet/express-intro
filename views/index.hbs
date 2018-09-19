@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Users</title>
+</head>
+<body>
+	<h1>Users (HBS)</h1>
+	<ul>
+		{{#each users as |user|}}
+		<li><a href="/{{user.name}}"><img src="/profiles/{{user.name}}.jpeg"></a></li>
+		{{/each}}
+	</ul>
+</body>
+</html>

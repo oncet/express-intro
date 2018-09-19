@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User {{user.name}}</title>
+</head>
+<body>
+	<p><a href="/">Back to list</a></p>
+
+	<h1>{{user.name}} ({{user.age}} years old)</h1>
+
+	<p class="edit">
+		<input id="age" type="text" value="{{user.age}}">
+		<a href="#" onclick="save()">Save</a>
+		<a href="#" onclick="cancel()">Cancel</a>
+	</p>
+
+	<p>
+		<a href="#" onclick="edit()">Edit</a>
+		<a href="#" onclick="del()">Delete</a>
+	</p>
+
+	<img src="/profiles/{{user.name}}.jpeg">
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+		    $('.edit').hide()
+		})
+
+		function edit() {
+			$('.edit').show()
+		}
+
+		function cancel() {
+			$('.edit').hide()
+		}
+
+		function save() {
+			$.ajax('/{{user.name}}', {
+				method: 'PUT',
+				data: {
+					age: $('#age').val()
+				},
+				complete: function() {
+					cancel()
+					location.reload()
+				}
+			})
+		}
+	</script>
+</body>
+</html>
